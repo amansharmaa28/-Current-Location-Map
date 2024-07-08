@@ -1,0 +1,21 @@
+
+<html>
+<head>
+<title>Current Location</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+</head>
+<body>
+<div id="map" style="height: 850px;"></div>
+<script>
+var map = L.map('map').setView([0, 0], 17);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {attribution: 'manisha'}).addTo(map);
+var marker = L.marker([0, 0], {draggable: true}).addTo(map);
+map.locate({setView: true});
+map.on('locationfound', function(mani) {
+marker.setLatLng(mani.latlng);
+L.circle(mani.latlng, {radius: 100}).addTo(map);
+});
+</script>
+</body>
+</html>
